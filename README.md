@@ -1,9 +1,8 @@
-![](https://img.shields.io/badge/day%20📅-27-blue)
-![](https://img.shields.io/badge/stars%20⭐-50-yellow)
+![](https://img.shields.io/badge/stars%20⭐-14-yellow)
 
-# Advent of Code 2024
+# Advent of Code 2015
 
-This repository hosts my solutions for the Advent of Code puzzles of 2024. I'm using Python and my main objective is to
+This repository hosts my solutions for the Advent of Code puzzles of 2015. I'm using Python and my main objective is to
 come up with easy-to-read solutions.
 
 ## Contact
