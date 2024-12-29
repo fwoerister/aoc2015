@@ -2,7 +2,7 @@ from heapq import heappop, heappush
 
 from util.solution import SolutionBase
 
-# greedy approach, does not guaratnee optimal solution!
+# greedy approach, does not guarantee optimal solution!
 #
 # checkout this solution:
 # https://en.wikipedia.org/wiki/CYK_algorithm
