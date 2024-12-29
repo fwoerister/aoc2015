@@ -1,3 +1,6 @@
+
+
+
 class Grid:
     def __init__(self, rows):
         self.rows = list(map(lambda line: list(line.strip()), filter(lambda x: x, rows)))
