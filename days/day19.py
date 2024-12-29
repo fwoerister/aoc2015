@@ -2,7 +2,9 @@ from heapq import heappop, heappush
 
 from util.solution import SolutionBase
 
-
+# greedy approach, does not guaratnee optimal solution!
+#
+# checkout this solution:
 # https://en.wikipedia.org/wiki/CYK_algorithm
 
 def gen_distinct_molecules(molecule, rules, prefix=""):
@@ -44,7 +46,6 @@ def get_minimal_steps_to_medicine(rules, molecule):
 
     while open_solutions:
         len_m, current_steps, current_molecule = heappop(open_solutions)
-        print(current_steps, current_molecule)
         if current_molecule == 'e':
             return current_steps
 
