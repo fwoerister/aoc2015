@@ -107,7 +107,7 @@ def find_most_expensive_equipment(player, boss, equipment, items):
             continue
         if get_weapon_count(e) == 1 and evaluate_winner(equipe_player(player, e), boss) == 'boss':
             if max_expense < c:
-                max_expense = c
+                    max_expense = c
 
         i_t, i_c, i_d, i_a = i[0]
         heappush(open_solutions, (c + i_c, e + [i[0]], i[1:]))
