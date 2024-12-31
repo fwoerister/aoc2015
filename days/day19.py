@@ -2,6 +2,7 @@ from heapq import heappop, heappush
 
 from util.solution import SolutionBase
 
+
 # greedy approach, does not guarantee optimal solution!
 #
 # checkout this solution:
@@ -44,8 +45,13 @@ def parse_input(lines):
 def get_minimal_steps_to_medicine(rules, molecule):
     open_solutions = [(len(molecule), 0, molecule)]
 
+    min_steps = -1
+
+    visited = set()
+
     while open_solutions:
         len_m, current_steps, current_molecule = heappop(open_solutions)
+
         if current_molecule == 'e':
             return current_steps
 
@@ -59,6 +65,8 @@ def get_minimal_steps_to_medicine(rules, molecule):
             for key, value in applicable_rule_keys:
                 new_m = current_molecule[:idx] + key + current_molecule[idx + len(value):]
                 heappush(open_solutions, (len(new_m), current_steps + 1, new_m))
+
+    return min_steps
 
 
 class Solution(SolutionBase):
