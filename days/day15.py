@@ -3,22 +3,23 @@ import re
 from util.solution import SolutionBase
 
 
-def find_best_combination(remaining_ingredients, remaining_spoons, ingredients, recipie):
+def find_best_combination(remaining_ingredients, remaining_spoons, ingredients, recipy, calory_restriction=None):
     if remaining_spoons == 0:
-        return calc_score(recipie, ingredients)
+        return calc_score(recipy, ingredients, calory_restriction)
 
     ingredient = remaining_ingredients[0]
     remaining_ingredients = remaining_ingredients[1:]
 
     if len(remaining_ingredients) == 0:
-        recipie[ingredient] = remaining_spoons
-        return find_best_combination(remaining_ingredients, 0, ingredients, recipie)
+        recipy[ingredient] = remaining_spoons
+        return find_best_combination(remaining_ingredients, 0, ingredients, recipy, calory_restriction)
 
     max_score = 0
 
     for spoons in range(remaining_spoons + 1):
-        recipie[ingredient] = spoons
-        score = find_best_combination(remaining_ingredients, (remaining_spoons - spoons), ingredients, recipie)
+        recipy[ingredient] = spoons
+        score = find_best_combination(remaining_ingredients, (remaining_spoons - spoons), ingredients, recipy,
+                                      calory_restriction)
 
         if score > max_score:
             max_score = score
@@ -26,7 +27,7 @@ def find_best_combination(remaining_ingredients, remaining_spoons, ingredients, 
     return max_score
 
 
-def calc_score(recipie, ingredients):
+def calc_score(recipie, ingredients, calory_restriction):
     feature_score = {
         'cap': 0,
         'dur': 0,
@@ -49,7 +50,10 @@ def calc_score(recipie, ingredients):
     for key in feature_score:
         if key != 'cal':
             score *= feature_score[key] if feature_score[key] >= 0 else 0
-    return score if feature_score['cal'] == 500 else 0
+    if calory_restriction:
+        return score if feature_score['cal'] == calory_restriction else 0
+    else:
+        return score
 
 
 def parse_input(lines):
@@ -74,4 +78,7 @@ class Solution(SolutionBase):
             return find_best_combination(list(ing.keys()), 100, ing, {})
 
     def level2(self, example_input=False):
-        pass
+        with self.get_input_file(example_input) as f:
+            ing = parse_input(f.readlines())
+
+            return find_best_combination(list(ing.keys()), 100, ing, {}, calory_restriction=500)
