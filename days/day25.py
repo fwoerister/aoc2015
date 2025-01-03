@@ -39,3 +39,6 @@ class Solution(SolutionBase):
 
             gen = CodeGenerator(20151125)
             return gen.get_code(row, column)
+
+    def level2(self, example_input=False):
+        pass
